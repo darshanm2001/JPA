@@ -1,7 +1,7 @@
 package com.xworkz.salar.boot;
 
 import com.xworkz.salar.entity.ShopEntity;
-import com.xworkz.salar.entity.SuperHeroEntity;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

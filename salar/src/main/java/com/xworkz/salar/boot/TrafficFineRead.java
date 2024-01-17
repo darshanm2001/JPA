@@ -1,17 +1,15 @@
 package com.xworkz.salar.boot;
 
-import com.xworkz.salar.entity.FestivalEntity;
-
+import com.xworkz.salar.entity.TrafficFineEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class FestivalRunner {
-
+public class TrafficFineRead {
     public static void main(String[] args) {
-        EntityManagerFactory emf= Persistence.createEntityManagerFactory("x-workz");
+       EntityManagerFactory emf= Persistence.createEntityManagerFactory("x-workz");
         EntityManager em= emf.createEntityManager();
         System.out.println("EM :" +em);
         EntityTransaction et= em.getTransaction();
@@ -19,17 +17,12 @@ public class FestivalRunner {
         et.begin();
         System.out.println("ET Begain");
         System.out.println("Starting Opertaion");
-        FestivalEntity festivalEntity=new FestivalEntity(2,"New Year","january",2024,"America");
-        em.persist(festivalEntity);
-        System.out.println("Operation complete");
-        et.commit();
+        TrafficFineEntity trafficFineEntityDB=em.find(TrafficFineEntity.class,2);
+        System.out.println("entity found :"+trafficFineEntityDB);
+
         System.out.println("ET commit");
+        System.out.println("Created Toy details");
         em.close();
         emf.close();
-
-
-
-
     }
 }
-

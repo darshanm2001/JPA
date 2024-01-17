@@ -1,16 +1,16 @@
 package com.xworkz.salar.boot;
 
-import com.xworkz.salar.entity.FestivalEntity;
 
+import com.xworkz.salar.entity.ToyEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class FestivalRunner {
-
+public class ToyReadRunner {
     public static void main(String[] args) {
+
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("x-workz");
         EntityManager em= emf.createEntityManager();
         System.out.println("EM :" +em);
@@ -19,11 +19,14 @@ public class FestivalRunner {
         et.begin();
         System.out.println("ET Begain");
         System.out.println("Starting Opertaion");
-        FestivalEntity festivalEntity=new FestivalEntity(2,"New Year","january",2024,"America");
-        em.persist(festivalEntity);
-        System.out.println("Operation complete");
-        et.commit();
+       /* ToyEntity toyEntity=new ToyEntity(3,"Doll","White",8000,"Cloth");
+        em.persist(toyEntity);*/
+        ToyEntity entityFromDB=em.find(ToyEntity.class,2);
+        System.out.println("entity found :"+entityFromDB);
+
+
         System.out.println("ET commit");
+        System.out.println("Created Toy details");
         em.close();
         emf.close();
 

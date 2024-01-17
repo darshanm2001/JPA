@@ -1,7 +1,7 @@
 package com.xworkz.salar.boot;
 
 import com.xworkz.salar.entity.ResumeEntity;
-import com.xworkz.salar.entity.SuperHeroEntity;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,35 +1,34 @@
 package com.xworkz.salar.boot;
 
-import com.xworkz.salar.entity.FestivalEntity;
-
+import com.xworkz.salar.entity.ToyEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class FestivalRunner {
-
+public class ToyUpdateRunner {
     public static void main(String[] args) {
         EntityManagerFactory emf= Persistence.createEntityManagerFactory("x-workz");
         EntityManager em= emf.createEntityManager();
-        System.out.println("EM :" +em);
+        System.out.println("Em :"+em);
         EntityTransaction et= em.getTransaction();
-        System.out.println("ET :"+et);
         et.begin();
-        System.out.println("ET Begain");
-        System.out.println("Starting Opertaion");
-        FestivalEntity festivalEntity=new FestivalEntity(2,"New Year","january",2024,"America");
-        em.persist(festivalEntity);
-        System.out.println("Operation complete");
+        System.out.println("ET Begin");
+        ToyEntity toyEntity=em.find(ToyEntity.class,2);
+
+        if (toyEntity !=null){
+            //set properties amd merge-
+            toyEntity.setColor("black");
+            em.merge(toyEntity);
+            System.out.println("Data updated Successfully");
+
+        }
+        else
+            System.out.println("Details can't updated");
         et.commit();
-        System.out.println("ET commit");
         em.close();
         emf.close();
-
-
-
-
     }
-}
 
+}
